@@ -34,7 +34,7 @@ export class TranslationService {
     const translation: Translation = new Translation();
     translation.title = createTranslationRequest.title;
     translation.description = createTranslationRequest.description;
-    translation.status = createTranslationRequest.created;
+    translation.status = TranslationStatus.Created;
 
     await this.translationRepository.save(translation); //translation entity saved in database
 
@@ -55,12 +55,12 @@ export class TranslationService {
 
   public async getAll() {
     const translations : Translation[] = await this.translationRepository.find();
-    const translationsDTO: TranslationDTO[] = translations.map(t => this.entityToDTO(t));
-
+    //all translations in array to translation DTO
+    const translationsDTO: TranslationDTO[] = translations.map(t => this.entityToDTO(t)); 
     return translationsDTO;
   }
 
-  public async updateOne(translationId: number, UpdateTranslationRequest: UpdateTranslationDTO) {
+  public async updateOne(translationId: number, updateTranslationRequest: UpdateTranslationDTO) {
     //fetch and check if the translation already exists
 
     const translation: Translation = await this.getOne(translationId);
