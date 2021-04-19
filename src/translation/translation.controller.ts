@@ -33,7 +33,7 @@ export class TranslationController {
   }
 
   @Put("/:id")
-  public async updateOne(@Param("id") taskId: number, @Body() updateTranslationRequest: UpdateTranslationDTO) {
+  public async updateOne(@Param("id") translationId: number, @Body() updateTranslationRequest: UpdateTranslationDTO) {
     const res = await this.translationService.updateOne(translationId, updateTranslationRequest);
 
     return res;

@@ -74,7 +74,7 @@ export class TranslationService {
     await this.translationRepository.save(translation);
 
     //return translation as DTO
-    return translationDTO: TranslationDTO = this.entityToDTO(translation);
+    const translationDTO: TranslationDTO = this.entityToDTO(translation);
 
     return translationDTO;
   }
