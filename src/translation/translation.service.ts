@@ -43,6 +43,7 @@ export class TranslationService {
     return translationDTO;
   }
 
+  //helper function to get an array of translations as a DTO
   private entityToDTO(translation: Translation): TranslationDTO {
     const translationDTO = new TranslationDTO();
     translationDTO.id = translation.id;
@@ -53,6 +54,7 @@ export class TranslationService {
     return translationDTO;
   }
 
+  //get all translations as a translation DTO
   public async getAll() {
     const translations : Translation[] = await this.translationRepository.find();
     //all translations in array to translation DTO
@@ -60,12 +62,14 @@ export class TranslationService {
     return translationsDTO;
   }
 
+  //update properties of one translation
   public async updateOne(translationId: number, updateTranslationRequest: UpdateTranslationDTO) {
     //fetch and check if the translation already exists
 
     const translation: Translation = await this.getOne(translationId);
 
     //check properties set in DTO
+    //if property not set, then use default
     translation.title = updateTranslationRequest.title || translation.title;
     translation.description = updateTranslationRequest.description || translation.description;
     translation.status = updateTranslationRequest.status === undefined? translation.status : updateTranslationRequest.status;
@@ -79,6 +83,7 @@ export class TranslationService {
     return translationDTO;
   }
 
+  //delete one translation by Id.
   public async deleteOne(translationId: number) {
     //fetch and check if translation already exists
 

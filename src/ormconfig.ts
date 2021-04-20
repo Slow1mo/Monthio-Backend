@@ -15,7 +15,7 @@ const config: ConnectionOptions = {
   port: 5432,
   username: 'postgres',
   password: 'postgres',
-  database: 'fullstackapi',
+  database: 'monthio',
   entities: [__dirname + '/**/*.entity{.ts,.js}'],
 
   // We are using migrations, synchronize should be set to false.
