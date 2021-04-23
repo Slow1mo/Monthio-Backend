@@ -33,7 +33,7 @@ export class TranslationService {
   public async createOne(createTranslationRequest: CreateTranslationDTO) {
     const translation: Translation = new Translation();
     translation.title = createTranslationRequest.title;
-    translation.description = createTranslationRequest.description;
+    translation.translations = createTranslationRequest.translations;
     translation.status = TranslationStatus.Created;
 
     await this.translationRepository.save(translation); //translation entity saved in database
@@ -48,7 +48,7 @@ export class TranslationService {
     const translationDTO = new TranslationDTO();
     translationDTO.id = translation.id;
     translationDTO.title = translation.title;
-    translationDTO.description = translation.description;
+    translationDTO.translations = translation.translations;
     translationDTO.status = translation.status;
 
     return translationDTO;
@@ -71,7 +71,7 @@ export class TranslationService {
     //check properties set in DTO
     //if property not set, then use default
     translation.title = updateTranslationRequest.title || translation.title;
-    translation.description = updateTranslationRequest.description || translation.description;
+    translation.translations = updateTranslationRequest.translations || translation.translations;
     translation.status = updateTranslationRequest.status === undefined? translation.status : updateTranslationRequest.status;
 
     //update the properties on the translation 
