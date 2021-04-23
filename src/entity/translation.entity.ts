@@ -14,7 +14,7 @@ export class Translation {
   @Column({ nullable: true, length: 64 })
   title: string;
   @Column({ nullable: true, length: 1024 })
-  translations: string;
+  description: string;
 
   @Column({ nullable: false, default: TranslationStatus.Created })
   status: TranslationStatus;
